@@ -54,7 +54,7 @@ func loadConfig(args *argContainer) (masterkey []byte, cf *configfile.ConfFile, 
 	var pw []byte
 	if cf.IsFeatureFlagSet(configfile.FlagFIDO2) {
 		if args.fido2 == "" {
-			tlog.Fatal.Printf("Masterkey encrypted using FIDO2 token; need to use the --fido2 option.")
+			tlog.Fatal.Printf("Masterkey encrypted using FIDO2 token; need to use the -fido2=<device> option.")
 			os.Exit(exitcodes.Usage)
 		}
 		pw = fido2.Secret(args.fido2, cf.FIDO2.CredentialID, cf.FIDO2.HMACSalt)
