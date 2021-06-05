@@ -28,11 +28,11 @@ func callFidoCommand(command fidoCommand, device string, stdin []string) ([]stri
 	var cmd *exec.Cmd
 	switch command {
 	case cred:
-		cmd = exec.Command("fido2-cred", "-M", "-h", "-v", device)
+		cmd = exec.Command("fido2-cred", "-M", "-h", device)
 	case assert:
 		cmd = exec.Command("fido2-assert", "-G", "-h", device)
 	case assertWithPIN:
-		cmd = exec.Command("fido2-assert", "-G", "-h", "-v", device)
+		cmd = exec.Command("fido2-assert", "-G", "-h", device)
 	}
 	tlog.Debug.Printf("callFidoCommand: executing %q with args %q", cmd.Path, cmd.Args)
 	cmd.Stderr = os.Stderr
